@@ -16,10 +16,7 @@ import {
   ProfileOrders,
   NotFound404
 } from '@pages';
-
-import { useDispatch } from '../../services/store';
-import { fetchIngredients } from '../../services/slices/ingredientsSlice';
-import { checkUserAuth } from '../../services/slices/userSlice';
+import { useDispatch, fetchIngredients, checkUserAuth } from '@store';
 
 const App = () => {
   const dispatch = useDispatch();

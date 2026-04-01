@@ -2,8 +2,7 @@ import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { Preloader } from '../ui/preloader';
 import { IngredientDetailsUI } from '../ui/ingredient-details';
-import { useSelector } from '../../services/store';
-import { selectIngredients } from '../../services/slices/ingredientsSlice';
+import { useSelector, selectIngredients } from '@store';
 
 export const IngredientDetails: FC = () => {
   const { id } = useParams<{ id: string }>();

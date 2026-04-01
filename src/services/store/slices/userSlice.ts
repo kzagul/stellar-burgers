@@ -9,7 +9,7 @@ import {
   updateUserApi
 } from '@api';
 import { TUser } from '@utils-types';
-import { setCookie, deleteCookie } from '../../utils/cookie';
+import { setCookie, deleteCookie } from '../../../utils/cookie';
 import { RootState } from '../store';
 
 type TUserState = {

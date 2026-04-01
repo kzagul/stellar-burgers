@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient, TOrder } from '@utils-types';
-import { useSelector } from '../../services/store';
-import { selectIngredients } from '../../services/slices/ingredientsSlice';
 import {
+  useSelector,
+  selectIngredients,
   selectFeedOrders,
   selectUserOrders
-} from '../../services/slices/feedSlice';
+} from '@store';
 import { getOrderByNumberApi } from '@api';
 
 export const OrderInfo: FC = () => {

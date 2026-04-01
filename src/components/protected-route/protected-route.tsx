@@ -1,10 +1,6 @@
 import { FC } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useSelector } from '../../services/store';
-import {
-  selectIsAuthChecked,
-  selectUser
-} from '../../services/slices/userSlice';
+import { useSelector, selectIsAuthChecked, selectUser } from '@store';
 import { Preloader } from '../ui/preloader';
 
 type TProtectedRouteProps = {
