@@ -30,20 +30,24 @@ const constructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
   reducers: {
-    addIngredient(state, action: PayloadAction<TIngredient>) {
-      const ingredient = action.payload;
-      if (ingredient.type === 'bun') {
-        state.bun = { ...ingredient, id: uuidv4() };
-      } else {
-        state.ingredients.push({ ...ingredient, id: uuidv4() });
+    addIngredient: {
+      prepare: (ingredient: TIngredient) => ({
+        payload: { ...ingredient, id: uuidv4() }
+      }),
+      reducer: (state, { payload }: PayloadAction<TConstructorIngredient>) => {
+        if (payload.type === 'bun') {
+          state.bun = payload;
+        } else {
+          state.ingredients.push(payload);
+        }
       }
     },
-    removeIngredient(state, action: PayloadAction<string>) {
+    removeIngredient: (state, action: PayloadAction<string>) => {
       state.ingredients = state.ingredients.filter(
         (item) => item.id !== action.payload
       );
     },
-    moveIngredientUp(state, action: PayloadAction<number>) {
+    moveIngredientUp: (state, action: PayloadAction<number>) => {
       const index = action.payload;
       if (index > 0) {
         [state.ingredients[index - 1], state.ingredients[index]] = [
@@ -52,7 +56,7 @@ const constructorSlice = createSlice({
         ];
       }
     },
-    moveIngredientDown(state, action: PayloadAction<number>) {
+    moveIngredientDown: (state, action: PayloadAction<number>) => {
       const index = action.payload;
       if (index < state.ingredients.length - 1) {
         [state.ingredients[index], state.ingredients[index + 1]] = [
@@ -61,11 +65,11 @@ const constructorSlice = createSlice({
         ];
       }
     },
-    clearConstructor(state) {
+    clearConstructor: (state) => {
       state.bun = null;
       state.ingredients = [];
     },
-    closeOrderModal(state) {
+    closeOrderModal: (state) => {
       state.orderModalData = null;
       state.orderRequest = false;
     }
